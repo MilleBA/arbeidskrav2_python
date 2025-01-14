@@ -1,4 +1,4 @@
-# Arbeidskrav 2 IKKE FERDIG (oppg 5, 1?, 3?)
+# Arbeidskrav 2
 
 # Oppgave 1
 
@@ -13,9 +13,6 @@ def count_age():
     print("Du er ", age, " år gammel.")
     
 count_age()
-
-# display?
-
 
 # Oppgave 2
 
@@ -34,15 +31,22 @@ count_pizza()
 # Grader til radianer
 
 import numpy as np
-v_grad = float(input("Skriv inn gradtallet:" ))
-v_rad = v_grad*np.pi/180 # Radiantallet til vinkelen
 
-print("Radiantallet til vinkelen: ", v_rad)
-
-# Import math Library and convert different degrees into radians
-import math
-print("Radiantallet til vinkelen: ", math.radians(v_grad))
-
+def find_radian():
+    v_grad = float(input("Skriv inn gradtallet:" ))
+    v_rad = v_grad*np.pi/180 # Radiantallet til vinkelen
+    print("Radiantallet til vinkelen: ", v_rad)
+    
+find_radian()
+    
+    # Variant 2
+    # import math
+    #
+    # def find_radian():
+    #   v_grad = float(input("Skriv inn gradtallet:" ))
+    #   print("Radiantallet til vinkelen: ", math.radians(v_grad))
+    
+    # find_radian()
 
 # Oppgave 4
 # Keys - land, hovedstaden, antall innbygere i mill. i hovedstaden
@@ -97,8 +101,45 @@ def update_country():
 update_country()
 
 # Oppgave 5
+# Lag et program med en funksjon som tar a og b som inn-argumenter og som så regner ut arealet og «ytre» 
+# omkrets til en figur satt sammen av en rettvinklet trekant og en halvsirkel
 
+import math
 
+a = float(input("Skriv et tall - a:" ))
+b = float(input("Skriv et tall - b:" ))
+
+# Radius av halvsirkelen
+r = a / 2
+
+# Funksjon for arealet av trekanten
+def find_triangle_area(a, b): 
+    return (b * a) / 2
+
+# Funksjon for hypotenusen til trekanten
+def find_triangle_c(a, b):
+    return math.sqrt(a**2 + b**2)
+
+# Funksjon for arealet av halvsirkelen
+def find_half_circle_area(r):
+     return (math.pi * r**2) / 2
+
+# Funksjon for omkretsen av halvsirkelen
+def find_half_circle_circumference(r):
+    return math.pi * r
+
+# Funksjon for figurens egenskaper (areal og omkrets)
+def find_figure_properties(a, b, r):
+    
+    figur_area = find_half_circle_area(r) + find_triangle_area(a, b)
+    figur_circumference = find_half_circle_circumference(r) + b + find_triangle_c(a, b) # Trenger ikke a
+    
+    print("Arealet av figuren er: ", figur_area)
+    print("Ytre omkrets av figuren er: ", figur_circumference)
+    
+find_figure_properties(a, b, r)
+    
+    
 # Oppgave 6
 
 import matplotlib.pyplot as plt
@@ -110,12 +151,13 @@ def f(x):
 x_verdier = np.linspace(-10, 10, 200) # 200 punkter jevnt fordelt på intervallet [-10,10]
 y_verdier = f(x_verdier)
 
+plt.figure(1)
 plt.plot(x_verdier, y_verdier, label ="f(x) = -x^2 - 5")
 plt.xlabel("x")
 plt.ylabel("f(x)")
 plt.title("Graf av funksjonen f(x) = -x^2 - 5")
 plt.legend()
-plt.grid(True)
+plt.grid()
 plt.show()
 
     
